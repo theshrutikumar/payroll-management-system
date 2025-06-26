@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Payslip Generation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: #e8f0fe; /* light blue background */
+    }
+    .header-title {
+      font-family: 'Segoe UI', sans-serif;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="text-center text-primary header-title mb-2">Payslip Generation</h2>
+    <p class="text-center text-muted mb-4">Generate and download monthly employee payslips securely.</p>
+
+    <form class="bg-white p-4 rounded shadow-sm">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="employeeId" class="form-label">Employee ID</label>
+          <input type="text" class="form-control" id="employeeId" placeholder="Enter Employee ID">
+        </div>
+        <div class="col-md-6">
+          <label for="month" class="form-label">Month</label>
+          <input type="month" class="form-control" id="month">
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary">Generate Payslip</button>
+        <button type="button" class="btn btn-success">Download PDF</button>
+      </div>
+    </form>
+
+    <div class="mt-4 bg-light p-3 rounded shadow-sm">
+      <h5 class="text-secondary">Generated Payslips</h5>
+      <table class="table table-bordered mt-2">
+        <thead class="table-light">
+          <tr>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Month</th>
+            <th>Net Salary</th>
+            <th>Download</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>EMP001</td>
+            <td>Sneha</td>
+            <td>June 2025</td>
+            <td>₹45,623</td>
+            <td><button class="btn btn-outline-primary btn-sm">PDF</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
+
