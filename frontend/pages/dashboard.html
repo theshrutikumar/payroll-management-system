@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payroll Management Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #015d8f;
+      color: #fff;
+      position: fixed;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .nav-button {
+      background: #fff;
+      color: #015d8f;
+      border: none;
+      margin: 10px;
+      padding: 12px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 85%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .nav-button:hover {
+      background: #0075b7;
+      color: #fff;
+    }
+
+    .logout-button {
+      margin-top: auto;
+      background: #ff4c4c;
+      color: #fff;
+    }
+
+    .logout-button:hover {
+      background: #c0392b;
+    }
+
+    .main-content {
+      position: absolute;
+      top: 0;
+      left: 250px;
+      right: 0;
+      bottom: 0;
+      padding: 20px;
+      overflow-y: auto;
+      background-color: #ecf0f1;
+      box-sizing: border-box;
+    }
+
+    .welcome-section {
+      text-align: center;
+      padding: 20px;
+      background-color: #015d8f;
+      color: #ecf0f1;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .welcome-section h1 {
+      font-size: 2em;
+      margin: 0;
+    }
+
+    .welcome-section p {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+
+    .welcome-section img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin: 20px auto;
+      display: block;
+    }
+
+    .section {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 1.8em;
+      margin-top: 0;
+    }
+
+    .section p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .section img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 20px auto;
+    }
+
+    .footer {
+      background-color: #3576b8;
+      color: #ecf0f1;
+      padding: 15px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+
+    .footer .dashboard-options {
+      margin-top: 10px;
+    }
+
+    .footer .dashboard-options a {
+      color: #ecf0f1;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 0.9em;
+    }
+
+    .footer .dashboard-options a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>Dashboard</h2>
+    <button class="nav-button" onclick="openPage('manage.html')">Manage Employee</button>
+    <button class="nav-button" onclick="openPage('reports.html')">Report</button>
+    <button class="nav-button" onclick="openPage('attendance.html')">Attendance</button>
+    <button class="nav-button" onclick="openPage('salarycal.html')">Salary Calculation</button>
+    <button class="nav-button" onclick="openPage('payslipgeneration.html')">Payslip Generator</button>
+    <button class="nav-button" onclick="openPage('statutorycompliance.html')">Statutory Compliance</button>
+    <button class="logout-button" onclick="logout()">Logout</button>
+  </div>
+
+  <!-- MAIN CONTENT (You provided) -->
+  <div class="main-content">
+    <div class="welcome-section" id="welcome">
+      <h1>Welcome to Payroll Manager</h1>
+      <p>Manage employee salaries, attendance, and performance seamlessly.</p>
+      <img src="welcome.jpeg" alt="Payroll Dashboard Background" />
+    </div>
+
+    <div class="section">
+      <h2>Manage Employee</h2>
+      <p>View and manage all employee records, departments, and designations.</p>
+      <img src="manage.png" alt="Employee Icon" />
+    </div>
+
+    <div class="section">
+      <h2>Report</h2>
+      <p>View salary summaries, attendance trends, and performance metrics</p>
+      <img src="reports.jpeg" alt="Add Icon" />
+    </div>
+
+    <div class="section">
+      <h2>Attendance</h2>
+      <p>Track attendance, manage leave requests, and view leave balances.</p>
+      <img src="attendence.png" alt="Attendance Icon" />
+    </div>
+
+    <div class="section">
+      <h2>Salary Calculation</h2>
+      <p>Automatically calculate salary with deductions, overtime, and tax.</p>
+      <img src="salary.webp" alt="Salary Icon" />
+    </div>
+
+    <div class="section">
+      <h2>Payslip Generator</h2>
+      <p>Generate and download payslips for each employee in PDF format.</p>
+      <img src="payslip.jpeg" alt="Payslip Icon" />
+    </div>
+
+    <div class="section">
+      <h2>Statutory Compliance</h2>
+      <p>Generate reports for TDS, PF, and ESI compliance.</p>
+      <img src="comp.jpeg" alt="Compliance Icon" />
+    </div>
+
+    <footer class="footer">
+      <p>&copy; 2024 Payroll Management System. All rights reserved.</p>
+      <div class="dashboard-options">
+        <a href="#welcome">Home</a>
+        
+      </div>
+    </footer>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    function openPage(page) {
+      window.location.href =  page;
+    }
+
+    function logout() {
+      window.location.href = "login.html";
+    }
+  </script>
+
+</body>
+</html>
