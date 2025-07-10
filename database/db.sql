@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   `id` int NOT NULL AUTO_INCREMENT,
   `emp_id` int NOT NULL DEFAULT '0',
   `date` date NOT NULL,
-  `status` enum('Present','Absent','Half-Day','Late','Remote') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `status` enum('Present','Absent','Leave') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_attendance_employees` (`emp_id`),
   CONSTRAINT `FK_attendance_employees` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`)
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
   PRIMARY KEY (`emp_id`),
   KEY `FK_employees_users` (`created_by`),
   CONSTRAINT `FK_employees_users` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table payroll_db.employees: ~0 rows (approximately)
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `leaves` (
   `from_date` date NOT NULL,
   `to_date` date NOT NULL,
   `leave_type` enum('Casual','Sick','Earned') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `status` enum('Pending','Approved','Rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Pending',
+  `reason` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_leaves_employees` (`emp_id`),
   CONSTRAINT `FK_leaves_employees` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`)
