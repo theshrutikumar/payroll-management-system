@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   `id` int NOT NULL AUTO_INCREMENT,
   `emp_id` int NOT NULL DEFAULT '0',
   `date` date NOT NULL,
-  `status` enum('Present','Absent','Half-Day','Late','Remote') COLLATE utf8mb4_general_ci NOT NULL,
+  `status` enum('Present','Absent','Half-Day','Late','Remote') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_attendance_employees` (`emp_id`),
   CONSTRAINT `FK_attendance_employees` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`)
@@ -37,17 +37,17 @@ CREATE TABLE IF NOT EXISTS `attendance` (
 DROP TABLE IF EXISTS `employees`;
 CREATE TABLE IF NOT EXISTS `employees` (
   `emp_id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `dob` date NOT NULL,
-  `dept` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
-  `desig` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `department` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `designation` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `salary` float NOT NULL DEFAULT (0),
   `joining_date` date NOT NULL DEFAULT (curdate()),
   `created_by` int NOT NULL DEFAULT (0),
   PRIMARY KEY (`emp_id`),
   KEY `FK_employees_users` (`created_by`),
   CONSTRAINT `FK_employees_users` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table payroll_db.employees: ~0 rows (approximately)
 
@@ -58,8 +58,8 @@ CREATE TABLE IF NOT EXISTS `leaves` (
   `emp_id` int NOT NULL DEFAULT '0',
   `from_date` date NOT NULL,
   `to_date` date NOT NULL,
-  `leave_type` enum('Casual','Sick','Earned') COLLATE utf8mb4_general_ci NOT NULL,
-  `status` enum('Pending','Approved','Rejected') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Pending',
+  `leave_type` enum('Casual','Sick','Earned') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `status` enum('Pending','Approved','Rejected') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (`id`),
   KEY `FK_leaves_employees` (`emp_id`),
   CONSTRAINT `FK_leaves_employees` FOREIGN KEY (`emp_id`) REFERENCES `employees` (`emp_id`)
@@ -72,7 +72,7 @@ DROP TABLE IF EXISTS `payroll`;
 CREATE TABLE IF NOT EXISTS `payroll` (
   `id` int NOT NULL AUTO_INCREMENT,
   `emp_id` int NOT NULL,
-  `month_year` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `month_year` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `basic` float NOT NULL,
   `hra` float NOT NULL,
   `da` float NOT NULL,
@@ -94,17 +94,17 @@ CREATE TABLE IF NOT EXISTS `payroll` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
-  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
-  `password_hash` varchar(225) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
-  `role` enum('Admin','HR','Employee') COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `password_hash` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `role` enum('Admin','HR','Employee') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT (now()),
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table payroll_db.users: ~2 rows (approximately)
+-- Dumping data for table payroll_db.users: ~3 rows (approximately)
 INSERT INTO `users` (`user_id`, `username`, `email`, `password_hash`, `role`, `created_at`) VALUES
 	(1, 'admin1', 'admin@email.com', 'admin123', 'Admin', '2025-07-06 17:25:57'),
 	(2, 'hr1', 'hr@rmail.com', 'hr123', 'HR', '2025-07-06 17:26:40'),

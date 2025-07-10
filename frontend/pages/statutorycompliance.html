@@ -1,77 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Statutory Compliance</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <title>Statutory Compliance Reports</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body {
-      background: #e8f0fe;
-    }
-    .header-title {
-      font-family: 'Segoe UI', sans-serif;
-      font-weight: bold;
-    }
+    body { background: #e8f0fe; padding: 30px; }
+    table { margin-top: 20px; }
   </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <h2 class="text-center text-primary header-title mb-2">Statutory Compliance Reports</h2>
-    <p class="text-center text-muted mb-4">Generate PF, ESI, and TDS reports for regulatory filing.</p>
 
-    <form class="bg-white p-4 rounded shadow-sm">
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <label class="form-label">Report Type</label>
-          <select class="form-select">
-            <option>PF</option>
-            <option>ESI</option>
-            <option>TDS</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">From Month</label>
-          <input type="month" class="form-control" />
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">To Month</label>
-          <input type="month" class="form-control" />
-        </div>
-      </div>
-      <div class="d-flex justify-content-between">
-        <button class="btn btn-primary">Generate Report</button>
-        <button class="btn btn-success">Export Excel</button>
-        <button class="btn btn-danger">Export PDF</button>
-      </div>
-    </form>
+  <div class="container">
+    <h2 class="text-center text-primary mb-4">Statutory Compliance Reports</h2>
 
-    <div class="mt-4 bg-light p-3 rounded shadow-sm">
-      <h5 class="text-secondary">Compliance Summary</h5>
-      <table class="table table-bordered mt-2">
-        <thead class="table-light">
-          <tr>
-            <th>Employee ID</th>
-            <th>Name</th>
-            <th>Month</th>
-            <th>PF</th>
-            <th>ESI</th>
-            <th>TDS</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>EMP001</td>
-            <td>Sneha</td>
-            <td>June 2025</td>
-            <td>₹1,200</td>
-            <td>₹500</td>
-            <td>₹3,000</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <label class="form-label">Select Month (YYYY-MM)</label>
+        <input type="month" id="month_year" class="form-control" required>
+      </div>
+      <div class="col-md-6 d-flex align-items-end">
+        <button class="btn btn-primary" onclick="fetchCompliance()">Generate Report</button>
+      </div>
     </div>
+
+    <table class="table table-bordered table-striped" id="complianceTable" style="display:none;">
+      <thead class="table-light">
+        <tr>
+          <th>Employee ID</th>
+          <th>Month</th>
+          <th>PF (₹)</th>
+          <th>ESI (₹)</th>
+          <th>TDS (₹)</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </div>
+
+  <script>
+    function fetchCompliance() {
+      const month = document.getElementById("month_year").value;
+      if (!month) return alert("Please select a valid month");
+
+      fetch(`http://localhost:3000/api/compliance/${month}`)
+        .then(res => res.json())
+        .then(data => {
+          const table = document.getElementById("complianceTable");
+          const tbody = table.querySelector("tbody");
+          tbody.innerHTML = "";
+          if (data.length === 0) {
+            alert("No compliance records found for this month.");
+            table.style.display = "none";
+            return;
+          }
+
+          data.forEach(row => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${row.emp_id}</td>
+              <td>${row.month_year}</td>
+              <td>${row.pf}</td>
+              <td>${row.esi}</td>
+              <td>${row.tds}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+
+          table.style.display = "table";
+        })
+        .catch(err => {
+          console.error("Error fetching compliance data:", err);
+          alert("Server error while fetching data");
+        });
+    }
+  </script>
+
 </body>
 </html>
-
-

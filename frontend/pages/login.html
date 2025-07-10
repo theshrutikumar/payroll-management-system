@@ -5,155 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login Page</title>
   <style>
-    /* Reset and base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
 
-/* Body background and center alignment */
-body {
-  background: url('login.jpeg') no-repeat center center/cover;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    body {
+      background: url('login.jpeg') no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-/* Main container holding both panels */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  height: 90vh;
-  display: flex;
-  background-color: rgba(255, 255, 255, 0.1); /* transparent overlay */
-  backdrop-filter: blur(4px);
-  border-radius: 10px;
-  overflow: hidden;
-}
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      height: 90vh;
+      display: flex;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(4px);
+      border-radius: 10px;
+      overflow: hidden;
+    }
 
-/* Left panel: navigation + contact info */
-.left-panel {
-  flex: 1;
-  padding: 40px;
-  color: white;
-  background: rgba(0, 0, 0, 0.5);
-  position: relative;
-}
+    .left-panel {
+      flex: 1;
+      padding: 40px;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
 
-/* Top navigation links */
-.nav {
-  display: flex;
-  gap: 30px;
-  margin-bottom: 40px;
-}
+    .nav {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
 
-.nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
+    .nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
 
-/* Hover effect on navigation */
-.nav a:hover {
-  color: #00eaff;
-  text-decoration: underline;
-}
+    .nav a:hover {
+      color: #00eaff;
+      text-decoration: underline;
+    }
 
-/* Contact information at the bottom */
-.contact-info {
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
-}
+    .contact-info {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+    }
 
-.contact-info p {
-  margin: 10px 0;
-}
+    .contact-info p {
+      margin: 10px 0;
+    }
 
-.contact-info .icon {
-  margin-right: 10px;
-}
+    .contact-info .icon {
+      margin-right: 10px;
+    }
 
-.contact-info span {
-  display: block;
-  font-size: 14px;
-  margin-left: 24px;
-  color: #ddd;
-}
+    .contact-info span {
+      display: block;
+      font-size: 14px;
+      margin-left: 24px;
+      color: #ddd;
+    }
 
-/* Right login panel */
-.login-box {
-  flex: 1;
-  background: linear-gradient(to right, #488c93, #00c3ff);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 60px 40px;
-  border-radius: 0 10px 10px 0;
-  box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2);
-}
+    .login-box {
+      flex: 1;
+      background: linear-gradient(to right, #488c93, #00c3ff);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 40px;
+      border-radius: 0 10px 10px 0;
+      box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2);
+    }
 
-/* Heading inside login box */
-.login-box h2 {
-  font-size: 24px;
-  font-weight: 800;
-  margin-bottom: 30px;
-  color: #002244;
-  text-align: center;
-}
+    .login-box h2 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 30px;
+      color: #002244;
+      text-align: center;
+    }
 
-/* Login form structure */
-.login-box form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
+    .login-box form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
 
-/* Form labels */
-.login-box label {
-  font-weight: 600;
-  color: #002244;
-}
+    .login-box label {
+      font-weight: 600;
+      color: #002244;
+    }
 
-/* Input fields */
-.login-box input {
-  padding: 12px;
-  border-radius: 25px;
-  border: none;
-  outline: none;
-  background: #fff;
-  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
-}
+    .login-box input {
+      padding: 12px;
+      border-radius: 25px;
+      border: none;
+      outline: none;
+      background: #fff;
+      box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
+    }
 
-/* Submit button */
-.login-box button {
-  margin-top: 20px;
-  padding: 12px;
-  border: none;
-  border-radius: 25px;
-  background-color: #002244;
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
+    .login-box button {
+      margin-top: 20px;
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      background-color: #002244;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
 
-/* Button hover effect */
-.login-box button:hover {
-  background-color: #003366;
-}
-
+    .login-box button:hover {
+      background-color: #003366;
+    }
   </style>
 </head>
 <body>
   <div class="container">
 
-    <!-- Left panel with navigation and contact info -->
     <div class="left-panel">
       <div class="nav">
         <a href="#">Home</a>
@@ -169,23 +153,53 @@ body {
       </div>
     </div>
 
-    <!-- Right side login form box -->
     <div class="login-box">
       <h2>LOGIN TO YOUR ACCOUNT</h2>
-      <form>
-        <!-- Username field -->
-        <label>Username :</label>
-        <input type="text" placeholder="Enter your username" />
+      <form id="loginForm">
+        <label for="username">Username :</label>
+        <input type="text" id="username" placeholder="Enter your username" required />
 
-        <!-- Password field -->
-        <label>Password :</label>
-        <input type="password" placeholder="Enter your password" />
+        <label for="password">Password :</label>
+        <input type="password" id="password" placeholder="Enter your password" required />
 
-        <!-- Submit/Login button -->
         <button type="submit">LOGIN</button>
       </form>
     </div>
-
   </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      try {
+        const response = await fetch("http://localhost:3000/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert("Login successful!");
+          if (data.role === "Admin") {
+            window.location.href = "dashboard.html";
+          } else if (data.role === "HR") {
+            window.location.href = "manage.html";
+          } else {
+            window.location.href = "payslipgeneration.html";
+          }
+        } else {
+          alert("Login failed: " + data);
+        }
+      } catch (error) {
+        alert("Server error! Please try again later.");
+        console.error(error);
+      }
+    });
+  </script>
 </body>
 </html>
