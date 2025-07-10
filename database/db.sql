@@ -102,9 +102,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table payroll_db.users: ~0 rows (approximately)
+-- Dumping data for table payroll_db.users: ~2 rows (approximately)
+INSERT INTO `users` (`user_id`, `username`, `email`, `password_hash`, `role`, `created_at`) VALUES
+	(1, 'admin1', 'admin@email.com', 'admin123', 'Admin', '2025-07-06 17:25:57'),
+	(2, 'hr1', 'hr@rmail.com', 'hr123', 'HR', '2025-07-06 17:26:40'),
+	(3, 'emp1', 'emp@email.com', 'emp123', 'Employee', '2025-07-06 17:27:26');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
