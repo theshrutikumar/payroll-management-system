@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Payroll Management Dashboard</title>
   <style>
     body {
@@ -147,6 +148,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- SIDEBAR -->
@@ -155,13 +157,14 @@
     <button class="nav-button" onclick="openPage('manage.html')">Manage Employee</button>
     <button class="nav-button" onclick="openPage('reports.html')">Report</button>
     <button class="nav-button" onclick="openPage('attendance1.html')">Attendance</button>
+    <button class="nav-button" onclick="openPage('leaves.html')">Leave</button>
     <button class="nav-button" onclick="openPage('salarycal.html')">Salary Calculation</button>
     <button class="nav-button" onclick="openPage('payslipgeneration.html')">Payslip Generator</button>
     <button class="nav-button" onclick="openPage('statutorycompliance.html')">Statutory Compliance</button>
     <button class="logout-button" onclick="logout()">Logout</button>
   </div>
 
-  
+
   <div class="main-content">
     <div class="welcome-section" id="welcome">
       <h1>Welcome to Payroll Manager</h1>
@@ -183,7 +186,13 @@
 
     <div class="section">
       <h2>Attendance</h2>
-      <p>Track attendance, manage leave requests, and view leave balances.</p>
+      <p>Track and manage attendance</p>
+      <img src="attendence.png" alt="Attendance Icon" />
+    </div>
+
+    <div class="section">
+      <h2>Leave</h2>
+      <p>Track leave , manage leave requests, and view leave balances.</p>
       <img src="attendence.png" alt="Attendance Icon" />
     </div>
 
@@ -209,7 +218,7 @@
       <p>&copy; 2024 Payroll Management System. All rights reserved.</p>
       <div class="dashboard-options">
         <a href="#welcome">Home</a>
-        
+
       </div>
     </footer>
   </div>
@@ -217,7 +226,7 @@
   <!-- SCRIPT -->
   <script>
     function openPage(page) {
-      window.location.href =  page;
+      window.location.href = page;
     }
 
     function logout() {
@@ -226,4 +235,5 @@
   </script>
 
 </body>
+
 </html>
